@@ -7,7 +7,16 @@ const Register = () => {
   const [email, setemail] = useState("");
 
   function signUp() {
-    console.log(name, email, password);
+    let item = { name, email, password };
+    console.log(item);
+
+    fetch("http://localhost:8000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    });
   }
 
   return (
