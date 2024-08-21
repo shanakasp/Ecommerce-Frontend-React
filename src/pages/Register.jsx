@@ -1,22 +1,37 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
+  const navigate = useNavigate();
 
-  function signUp() {
+  async function signUp() {
     let item = { name, email, password };
     console.log(item);
 
-    fetch("http://localhost:8000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    });
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/register",
+        item,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Response", response.data);
+      localStorage.setItem("userName", response.data.name);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("userID", response.data.id);
+
+      navigate("/add");
+    } catch (error) {
+      console.error("There was a problem with your Axios request:", error);
+    }
   }
 
   return (
