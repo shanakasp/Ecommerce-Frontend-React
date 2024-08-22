@@ -1,3 +1,4 @@
+import { NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -22,7 +23,12 @@ function Header({ authenticate }) {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link href="/profile">Profile</Nav.Link>
+              <Nav>
+                <NavDropdown title="Profile">
+                  <NavDropdown.Item>Name</NavDropdown.Item>
+                  <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
             )}
           </Nav>
         </Navbar.Collapse>

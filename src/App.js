@@ -4,6 +4,7 @@ import "./App.css";
 import AddProduct from "./pages/AddProduct.jsx";
 import Header from "./pages/Header.jsx";
 import Register from "./pages/Register.jsx";
+import UpdateProduct from "./pages/UpdateProduct.jsx";
 
 function App() {
   const [authenticate, setAuthenticate] = useState(false);
@@ -11,15 +12,15 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("email")) {
       setAuthenticate(true);
-      console.log("User is authenticated:", authenticate);
     }
-  }, [authenticate]);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <div>
       <Header authenticate={authenticate} />
       <Routes>
         <Route path="/add" element={<AddProduct />} />
+        <Route path="/update" element={<UpdateProduct />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>
