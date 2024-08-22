@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-function Header() {
+function Header({ authenticate }) {
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -14,10 +14,16 @@ function Header() {
             <Nav.Link href="/update">Update Products</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link eventKey={2} href="/register">
-              Register
-            </Nav.Link>
+            {!authenticate ? (
+              <>
+                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link eventKey={2} href="/register">
+                  Register
+                </Nav.Link>
+              </>
+            ) : (
+              <Nav.Link href="/profile">Profile</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
