@@ -2,8 +2,17 @@ import { NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Header({ authenticate }) {
+  const userName = localStorage.getItem("userName");
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("email");
+    localStorage.removeItem("userID");
+    navigate("/register");
+  }
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -25,8 +34,8 @@ function Header({ authenticate }) {
             ) : (
               <Nav>
                 <NavDropdown title="Profile">
-                  <NavDropdown.Item>Name</NavDropdown.Item>
-                  <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+                  <NavDropdown.Item>Name: {userName}</NavDropdown.Item>
+                  <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             )}
