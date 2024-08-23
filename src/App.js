@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddProduct from "./pages/AddProduct.jsx";
 import Header from "./pages/Header.jsx";
+import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import UpdateProduct from "./pages/UpdateProduct.jsx";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/add" element={<AddProduct />} />
         <Route path="/update" element={<UpdateProduct />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
